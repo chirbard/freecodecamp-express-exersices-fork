@@ -4,7 +4,8 @@ port = 80;
 app.listen(port)
 
 function getHandler(req, res) {
-  res.send('Hello Express');
+  absolutePath = __dirname + '/views/index.html'
+  res.sendFile(absolutePath)
 }
 
 app.get('/', getHandler);

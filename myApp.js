@@ -8,8 +8,12 @@ function getHandler(req, res) {
   res.sendFile(absolutePath)
 }
 
+const assetsFolderPath = __dirname + '/public'
+app.use(express.static(assetsFolderPath))
+
+
 app.get('/', getHandler);
-  
+
 
 
 

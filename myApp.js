@@ -1,9 +1,14 @@
 let express = require('express');
 let app = express();
-console.log('Hello World');
+port = 80;
+app.listen(port)
 
+function getHandler(req, res) {
+  res.send('Hello Express');
+}
 
-
+app.get('/', getHandler);
+  
 
 
 

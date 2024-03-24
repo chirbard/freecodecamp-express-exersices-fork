@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 let express = require('express');
 let app = express();
 port = 80;
@@ -14,6 +16,17 @@ app.use(express.static(assetsFolderPath))
 
 app.get('/', getHandler);
 
+function jsonHandler(req, res) {
+  messageStyle = process.env.MESSAGE_STYLE
+  if (messageStyle == 'uppercase') {
+    jsonData = {"message": "HELLO JSON"}
+  } else {
+    jsonData = {"message": "Hello json"}
+  }
+  res.json(jsonData)
+}
+
+app.get('/json', jsonHandler);
 
 
 

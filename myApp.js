@@ -1,9 +1,16 @@
 require('dotenv').config()
-
 let express = require('express');
 let app = express();
-port = 80;
-app.listen(port)
+
+function middleware(req, res, next) {
+  const method = req.method;
+  const path = req.path;
+  const ip = req.ip;
+  console.log(`${method} ${path} - ${ip}`);
+  next();
+}
+
+app.use(middleware)
 
 function getHandler(req, res) {
   absolutePath = __dirname + '/views/index.html'
@@ -11,8 +18,7 @@ function getHandler(req, res) {
 }
 
 const assetsFolderPath = __dirname + '/public'
-app.use(express.static(assetsFolderPath))
-
+app.use('/public', express.static(assetsFolderPath))
 
 app.get('/', getHandler);
 
@@ -27,6 +33,7 @@ function jsonHandler(req, res) {
 }
 
 app.get('/json', jsonHandler);
+
 
 
 

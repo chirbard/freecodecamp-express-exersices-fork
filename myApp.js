@@ -12,6 +12,7 @@ function middleware(req, res, next) {
 
 app.use(middleware)
 
+
 function getHandler(req, res) {
   absolutePath = __dirname + '/views/index.html'
   res.sendFile(absolutePath)
@@ -34,25 +35,17 @@ function jsonHandler(req, res) {
 
 app.get('/json', jsonHandler);
 
+app.get('/now', function(req, res, next) {
+  req.time = new Date().toString();  // Hypothetical synchronous operation
+  next();
+}, function(req, res) {
+  res.json({"time": req.time})
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.get("/:word/echo", (req, res) => {
+  const { word } = req.params;
+  res.json({echo: word});
+});
 
 
 

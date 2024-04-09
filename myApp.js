@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config()
 let bodyParser = require('body-parser');
 let express = require('express');
 let app = express();
@@ -51,15 +51,9 @@ app.get("/:word/echo", (req, res) => {
   res.json({echo: word});
 });
 
-app.get("/name", (req, res) => {
-  var { first: firstName, last: lastName } = req.query;
+app.post("/name", (req, res) => {
+  var { first: firstName, last: lastName } = req.body;
   res.json({name: `${firstName} ${lastName}`});
 });
-
-
-
-
-
-
 
  module.exports = app;
